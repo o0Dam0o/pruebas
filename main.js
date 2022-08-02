@@ -61,29 +61,42 @@ function editar(o) {
 		1.Nombre del producto\n
 		2.Descripcion del Producto\n
 		3.Precio del Producto\n
-		4.Eliminar Producto
+		4.Eliminar Producto\n
+		5.Volver al Menu
 		`)
 	);
-	switch (opt) {
-		case 1:
-			opc = prompt("Nuevo Nombre = ");
-			productos[o].nombre = opc;
-			break;
-		case 2:
-			opc = prompt("Nueva Descripcion = ");
-			productos[o].descripcion = opc;
-			break;
-		case 3:
-			opc = parseInt(prompt("Nuevo Precio = "));
-
-			productos[o].precio = opc;
-			break;
-		case 4:
-			delete productos[o];
-			alert("Eliminado");
-			menu();
-		default:
-			break;
+	let encendido = true;
+	while (encendido) {
+		switch (opt) {
+			case 1:
+				opc = prompt("Nuevo Nombre = ");
+				productos[o].nombre = opc;
+				alert(`Nombre de Producto ${producto.nombre}`);
+				break;
+			case 2:
+				opc = prompt("Nueva Descripcion = ");
+				productos[o].descripcion = opc;
+				alert(
+					`Nombre de Producto ${producto.nombre}\nPrecio : $${producto.descripcion}`
+				);
+				break;
+			case 3:
+				opc = parseInt(prompt("Nuevo Precio = "));
+				productos[o].precio = opc;
+				alert(
+					`Nombre de Producto ${producto.nombre}\nPrecio : $${producto.precio}`
+				);
+				break;
+			case 4:
+				productos.splice(o, 1);
+				console.log(o);
+				console.log(productos);
+				alert("Eliminado");
+				menu();
+			default:
+				menu();
+				break;
+		}
 	}
 	console.log(productos);
 }
@@ -103,15 +116,25 @@ function menu() {
 		switch (opciones) {
 			case 1:
 				addArticulos();
-				let iva = parseInt(prompt("Queres Agregar el IVA 21% ?\n-Si\n-No"));
-				if ((iva.toLowerCase = "si")) {
+				let iva = prompt("Queres Agregar el IVA 21% ?\n-Si\n-No");
+				if (iva.toLowerCase() == "no") {
+					for (const producto of productos) {
+						alert(
+							`Nombre de Producto ${producto.nombre}\nPrecio sin iva: $${producto.precio}`
+						);
+					}
+				} else if (iva.toLowerCase() == "si") {
 					for (const producto of productos) {
 						producto.iva21();
 						alert(
 							`Nombre de Producto ${producto.nombre}\nPrecio con iva: $${producto.precio}`
 						);
 					}
+				} else {
+					alert("error de caracter seras llevado al menu ");
+					menu();
 				}
+				console.log(iva);
 				break;
 			case 2:
 				buscarArticulo();
