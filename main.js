@@ -55,36 +55,36 @@ function buscarArticulo(obj) {
 	editar(o);
 }
 function editar(o) {
-	console.log(productos);
-	let opt = parseInt(
-		prompt(`Editar un producto\n
+	let encendido = true;
+	while (encendido) {
+		console.log(productos);
+		let opt = parseInt(
+			prompt(`Editar un producto\n
 		1.Nombre del producto\n
 		2.Descripcion del Producto\n
 		3.Precio del Producto\n
 		4.Eliminar Producto\n
 		5.Volver al Menu
 		`)
-	);
-	let encendido = true;
-	while (encendido) {
+		);
 		switch (opt) {
 			case 1:
 				opc = prompt("Nuevo Nombre = ");
 				productos[o].nombre = opc;
-				alert(`Nombre de Producto ${producto.nombre}`);
+				alert(`Nombre de Producto: ${productos[o].nombre}`);
 				break;
 			case 2:
 				opc = prompt("Nueva Descripcion = ");
 				productos[o].descripcion = opc;
 				alert(
-					`Nombre de Producto ${producto.nombre}\nPrecio : $${producto.descripcion}`
+					`Nombre de Producto: ${productos[o].nombre}\nDescripcion : ${productos[o].descripcion}`
 				);
 				break;
 			case 3:
 				opc = parseInt(prompt("Nuevo Precio = "));
 				productos[o].precio = opc;
 				alert(
-					`Nombre de Producto ${producto.nombre}\nPrecio : $${producto.precio}`
+					`Nombre de Producto: ${productos[o].nombre}\nPrecio : $${productos[o].precio}`
 				);
 				break;
 			case 4:
@@ -94,7 +94,7 @@ function editar(o) {
 				alert("Eliminado");
 				menu();
 			default:
-				menu();
+				encendido = false;
 				break;
 		}
 	}
