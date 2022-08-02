@@ -117,7 +117,12 @@ function menu() {
 			case 3:
 				console.log(productos);
 				for (const producto of productos) {
-					alert("nombre de los producotos :" + producto.nombre);
+					alert(
+						"nombre de los producotos :" +
+							producto.nombre +
+							"y su precios $" +
+							producto.precio
+					);
 				}
 				break;
 			case 4:
