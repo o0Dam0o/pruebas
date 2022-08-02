@@ -81,7 +81,7 @@ function editar(o) {
 		case 4:
 			delete productos[o];
 			alert("Eliminado");
-			break;
+			menu();
 		default:
 			break;
 	}
