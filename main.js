@@ -107,7 +107,9 @@ function menu() {
 				if ((iva.toLowerCase = "si")) {
 					for (const producto of productos) {
 						producto.iva21();
-						alert(`precion con iva $${producto.precio}`);
+						alert(
+							`Nombre de Producto ${producto.nombre}\nPrecio con iva: $${producto.precio}`
+						);
 					}
 				}
 				break;
@@ -118,10 +120,7 @@ function menu() {
 				console.log(productos);
 				for (const producto of productos) {
 					alert(
-						"nombre de los producotos :" +
-							producto.nombre +
-							"y su precios $" +
-							producto.precio
+						`Nombre del producoto: ${producto.nombre} \nDescripcion: ${producto.descripcion}\nPrecios: $${producto.precio}`
 					);
 				}
 				break;
