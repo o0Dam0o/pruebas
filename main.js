@@ -103,7 +103,7 @@ function menu() {
 		switch (opciones) {
 			case 1:
 				addArticulos();
-				let iva = parseInt(prompt("Queres Agregar el IVA 21% ?"));
+				let iva = parseInt(prompt("Queres Agregar el IVA 21% ?\n-Si\n-No"));
 				if ((iva.toLowerCase = "si")) {
 					for (const producto of productos) {
 						producto.iva21();
