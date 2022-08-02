@@ -1,173 +1,131 @@
-//Calculadora
-let num1 = 0;
-let num2 = 0;
-
-function menu() {
-	let opciones = parseInt(
-		prompt(
-			`Bienvenido\nQue herramientas queres usar ?\n1.Calculadora\n2.Generador de tablas\n3.Sacar tu promedio\n4.Numero par o impar\n5.Salir`
-		)
-	);
-	if (opciones == 1) {
-		calculardora();
-	} else if (opciones == 2) {
-		tabla();
-	} else if (opciones == 3) {
-		calificacion();
-	} else if (opciones == 4) {
-		parImpar();
-	} else {
-		alert("Hasta luego");
+class Productos {
+	constructor(nombre, descripcion, precio, stock, comprar, vender) {
+		this.nombre = nombre.toUpperCase();
+		this.descripcion = descripcion.toLowerCase();
+		this.stock = parseInt(stock);
+		this.precio = parseFloat(precio);
+		this.comprar = parseInt(comprar);
+		this.vender = parseInt(vender);
+	}
+	iva21() {
+		this.precio = this.precio * 1.21;
+	}
+	mostrarDatos() {
+		alert(productos[0].nombre);
+	}
+	comprarProducto() {
+		this.stock = this.stock + this.comprar;
+	}
+	verderProducto() {
+		this.stock = this.stock - this.vender;
 	}
 }
-
-function calculardora() {
-	let opciones = parseInt(
-		prompt(
-			"Calculadora\n1.Sumar\n2.Restar\n3.Multiplicar\n4.Dividir\n5.Porcertaje\n6.Volver al menu"
-		)
-	);
-	function operaciones(num1, num2, opciones) {
-		switch (opciones) {
-			case 1:
-				return num1 + num2;
-				break;
-			case 2:
-				return num1 - num2;
-				break;
-			case 3:
-				return num1 * num2;
-				break;
-			case 4:
-				return num1 / num2;
-				break;
-			case 5:
-				return (num1 * num2) / 100;
-			default:
-				return 0;
-				break;
-		}
-	}
-	while (opciones != 666) {
-		switch (opciones) {
-			case 1:
-				num1 = parseInt(prompt("Ingrese Numero :"));
-
-				num2 = parseInt(prompt("Ingrese Numero :"));
-				alert(`${num1} + ${num2} = ${operaciones(num1, num2, opciones)} `);
-				seguir = parseInt(
-					prompt("1.Serguir con el calculo\n2.Cambiar tipo de calculo")
-				);
-				if (seguir == 2) {
-					calculardora();
-				}
-				break;
-			case 2:
-				num1 = parseInt(prompt("Ingrese Numero :"));
-
-				num2 = parseInt(prompt("Ingrese Numero :"));
-				alert(`${num1} - ${num2} = ${operaciones(num1, num2, opciones)} `);
-				seguir = parseInt(
-					prompt("1.Serguir con el calculo\n2.Cambiar tipo de calculo")
-				);
-				if (seguir == 2) {
-					calculardora();
-				}
-				break;
-			case 3:
-				num1 = parseInt(prompt("Ingrese Numero :"));
-
-				num2 = parseInt(prompt("Ingrese Numero :"));
-				alert(`${num1} x ${num2} = ${operaciones(num1, num2, opciones)} `);
-				seguir = parseInt(
-					prompt("1.Serguir con el calculo\n2.Cambiar tipo de calculo")
-				);
-				if (seguir == 2) {
-					calculardora();
-				}
-				break;
-			case 4:
-				num1 = parseInt(prompt("Ingrese Numero :"));
-
-				num2 = parseInt(prompt("Ingrese Numero :"));
-				alert(`${num1} / ${num2} = ${operaciones(num1, num2, opciones)} `);
-				seguir = parseInt(
-					prompt("1.Serguir con el calculo\n2.Cambiar tipo de calculo")
-				);
-				if (seguir == 2) {
-					calculardora();
-				}
-				break;
-			case 5:
-				num1 = parseInt(prompt("Ingrese Numero :"));
-
-				num2 = parseInt(prompt("Ingrese Numero :"));
-				alert(`${num1} % ${num2} = ${operaciones(num1, num2, opciones)} `);
-				seguir = parseInt(
-					prompt("1.Serguir con el calculo\n2.Cambiar tipo de calculo")
-				);
-				if (seguir == 2) {
-					calculardora();
-				}
-				break;
-			case 6:
-				menu();
-				break;
-
-			default:
-				break;
-		}
-	}
-}
-function tabla() {
-	while (true) {
-		let tabla = parseInt(
-			prompt("Ingrese hasta cuento se va a crear la tabla : ")
-		);
-		num1 = parseInt(prompt("Ingrese numero :"));
-
-		for (let i = 1; i <= tabla; i++) {
-			console.log(`${num1} X ${i} = ${num1 * i}`);
-		}
-		let opc = parseInt(
-			prompt(
-				`La tabla lo podes encontrar en Consola\n1. Nueva tabla\n2. Volver al menu`
+const productos = [];
+function addArticulos() {
+	let cantidad = parseInt(prompt("Cuantos Productos vas a crear ?"));
+	for (let i = 1; i <= cantidad; i++) {
+		productos.push(
+			new Productos(
+				prompt("Nombre del producto " + i),
+				prompt("Descripcion del producto " + i),
+				prompt("Precio del producto " + i),
+				prompt("Stock del producto " + i),
+				0,
+				0
 			)
 		);
-		if (opc == 2) {
-			menu();
-		}
 	}
 }
-function calificacion() {
-	let nota = 0;
-	let acum = 0;
-	let prom = 0;
-	let cantNotas = parseInt(prompt("Ingrese la cantidad de notas que desea"));
-	for (let i = 0; i < cantNotas; i++) {
-		nota = parseInt(prompt(`Ingrese la nota ${i + 1}`));
-		acum = acum + nota;
-	}
-	prom = acum / cantNotas;
+let obj = "";
+let indes = 0;
 
-	alert("La suma total es " + acum);
-	alert("El promedio es " + prom);
-	let opc = parseInt(prompt(`1. Nueva Promedio\n2. Volver al menu`));
-	if (opc == 2) {
-		menu();
-	}
-}
-function parImpar() {
-	while (true) {
-		num1 = parseInt(prompt("Ingrese el Numero que deseas saber :"));
-		if (num1 % 2 == 0) {
-			alert("El número " + num1 + " es par");
-		} else {
-			alert("El número " + num1 + " es impar");
+function buscarArticulo(obj) {
+	obj = prompt("Busca por nombre del producto ?");
+	for (const producto of productos) {
+		if (producto.nombre == obj.toUpperCase()) {
+			alert("Encontrado");
+			break;
 		}
-		let opc = parseInt(prompt(`1. Seguir sacando\n2. Volver al menu`));
-		if (opc == 2) {
-			menu();
+	}
+	console.log(obj);
+	const o = productos.findIndex((element) => {
+		return element.nombre === obj.toUpperCase();
+	});
+	console.log(o);
+	editar(o);
+}
+function editar(o) {
+	console.log(productos);
+	let opt = parseInt(
+		prompt(`Editar un producto\n
+		1.Nombre del producto\n
+		2.Descripcion del Producto\n
+		3.Precio del Producto\n
+		4.Eliminar Producto
+		`)
+	);
+	switch (opt) {
+		case 1:
+			opc = prompt("Nuevo Nombre = ");
+			productos[o].nombre = opc;
+			break;
+		case 2:
+			opc = prompt("Nueva Descripcion = ");
+			productos[o].descripcion = opc;
+			break;
+		case 3:
+			opc = parseInt(prompt("Nuevo Precio = "));
+
+			productos[o].precio = opc;
+			break;
+		case 4:
+			delete productos[o];
+			alert("Eliminado");
+			break;
+		default:
+			break;
+	}
+	console.log(productos);
+}
+
+let encendido = true;
+function menu() {
+	while (encendido) {
+		let opciones = parseInt(
+			prompt(
+				`Bienvenido\n
+		1.Agregar articulos\n
+		2.Editar articulos\n
+		3.Ver articulos\n
+		4.Salir`
+			)
+		);
+		switch (opciones) {
+			case 1:
+				addArticulos();
+				let iva = parseInt(prompt("Queres Agregar el IVA 21% ?"));
+				if ((iva.toLowerCase = "si")) {
+					for (const producto of productos) {
+						producto.iva21();
+						alert(`precion con iva $${producto.precio}`);
+					}
+				}
+				break;
+			case 2:
+				buscarArticulo();
+				break;
+			case 3:
+				console.log(productos);
+				for (const producto of productos) {
+					alert("nombre de los producotos :" + producto.nombre);
+				}
+				break;
+			case 4:
+				alert("Hasta la Proxima");
+				encendido = false;
+				break;
+			default:
+				break;
 		}
 	}
 }
